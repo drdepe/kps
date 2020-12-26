@@ -19,7 +19,9 @@ sudo kps.sh
 
 enjoy
 :)
+
 follow me on twitter if u want it doesn't that matter:dr_depe
+
 
 or support via paypall (ok this matter) :docwanda77@gmail.com
 
