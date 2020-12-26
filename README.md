@@ -3,7 +3,7 @@ a script to make a persistent kali usb drive
 
 attention this project is under the test.................
 
-run it as s sudo 
+run it as  sudo 
 
 commands:-
 
