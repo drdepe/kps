@@ -20,9 +20,9 @@ sudo kps.sh
 enjoy
 :)
 
-follow me on twitter if u want it doesn't that matter:dr_depe
+follow me on twitter if u want it doesn't that matter:id: dr_depe
 
 
-or support via paypall (ok this matter) :docwanda77@gmail.com
+or support via paypall (ok this matter):paypal_address: docwanda77@gmail.com
 
 peace........
