@@ -9,7 +9,6 @@ function box_out() {
     echo " ${line}"
     printf '|                        welcome to kps                       '; echo -n "$space" ; printf "%s\n" '|';
     printf '|        a script to make a persistent kali usb drive          ' ;tput setaf 4; echo -n "$@"; tput setaf 3 ; printf "%s\n" ' |';
-    printf '|                       twitter:dr_depe                       '  ; echo -n "$space" ; printf "%s\n" '|';
     echo " ${line}"
     tput sgr 0
 }
@@ -19,18 +18,14 @@ box_out $@
 echo -e ""
 echo -e ""
 echo -e ""
-echo -e "i want to creat persistent:-
+sudo lsblk |grep sd
+echo -e ""
+echo -e ""
 
-1.usb
-2.sdcard"
-echo "enter a number:"
+echo "Enter the device name from above (eg: sda1 ) :"
 
 read device
-#if-usb
 
-if [ $device   -eq 1 ]
-then
-#pop
 (
 echo n # Add a new partition
 echo   # First sector 
@@ -38,47 +33,30 @@ echo
 echo   
 echo   # Last sector 
 echo w # Write changes
-) | sudo fdisk /dev/sdb
+) | sudo fdisk /dev/$device
 
-mkfs.ext3 -L persistence /dev/sdb3
-e2label /dev/sdb3  persistence
+mkfs.ext3 -L persistence /dev/$device
+e2label /dev/$device  persistence
 
-echo "what do you want to call it?:"
+echo "what do you want to call your kali (eg:NAME)?:"
 read uname
 mkdir -p /mnt/$uname
-mount /dev/sdb3  /mnt/$uname
+mount /dev/$device  /mnt/$uname
 echo "/ union" > /mnt/$uname/persistence.conf
-umount /dev/sdb3
-fi
+umount /dev/$device
 
-#i-sdcard
+echo -e "all done your device will reboot now ."
+echo -e ""
+echo -e "remove your usb device before it boots again ."
+for i in  1 2 3 4 5
+do
+echo "rebooting your device after $i seconds ........."
+sleep 1
+done 
 
-if [ $device   -eq 2 ]
-then
-#pop
+reboot 
 
 
-
-
-(
-echo n # Add a new partition
-echo   # First sector (Accept default: 1)
-echo   
-echo   
-echo   # Last sector (Accept default: varies)
-echo w # Write changes
-) | sudo fdisk /dev/sdc
-
-mkfs.ext3 -L persistence /dev/sdc3
-e2label /dev/sdc3  persistence
-
-echo "what do u wann call your kali?:"
-read uname
-mkdir -p /mnt/$uname
-mount /dev/sdc3  /mnt/$uname
-echo "/ union" > /mnt/$uname/persistence.conf
-umount /dev/sdc3
-fi
 
 
 
